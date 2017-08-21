@@ -4,44 +4,44 @@
   width: 400px;
   border: 10px red solid;
   box-shadow: 0 0 50px black;
+  margin: 5% auto;
 }
 
 h1 {
   text-align: center;
-	font-family: "Comic Sans MS", cursive, sans-serif;
-	font-size: 50px;
-  text-align: center;
-	color: darkred;  
-	margin: 0px;
-  margin-bottom: 15px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 50px;  
+  color: darkred;  
+  margin: 0px;
+  margin-bottom: 15px;  
 }
 
 #container{
-  width: 400px;
-  height: 400px;    
+    width: 400px;
+    height: 400px;    
 }
 
 .pixel {
-  float: left;
-  width: 25px;
-  height: 25px;
-  background-color: #FF0000;
+    float: left;    
+    background-color: #FF0000;
  }
 
 button {  
   display: inline;
   color: darkred;
-  font-size: 13px;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 13 px;
+  font-family: "Comic Sans MS", cursive, sans-serif;  
 }
 
 p {  
-  display: inline;  
+  display: inline;    
   color: darkred;
-  font-size: 13px;
+  font-size: 13 px;
   font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
 .resolution {
-  display: inline;  
+  display: inline;
+  font-size: 13 px;
+  font-family: "Comic Sans MS", cursive, sans-serif;  
 }
