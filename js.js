@@ -1,39 +1,56 @@
-function createGrid(n1, n2) {
-  for (var i = n1; i < n2; i++) {        
-    $('<div>').addClass('pixel').appendTo('#container') }
-  //hovering
-  $('.pixel').hover(function() {    	
-    $(this).css('background-color', '#'+Math.floor(Math.random()*16777215).toString(16));      
+function hoverWithGradient($x, num) {
+  var counter = 0;
+  var r = Math.random()*256;
+  var g = Math.random()*256;
+  var b = Math.random()*256;  
+  $($x).hover(function() {
+    r = Math.floor(r - r * 0.1);
+    g = Math.floor(g - g * 0.1);
+    b = Math.floor(b - b * 0.1);
+    var newColor = 'rgb(' + r + ',' + g + ',' + b + ')'
+    $(this).css("background-color", newColor);
+     counter++
+    if (counter === num*2) {
+      r = Math.random()*256;
+      g = Math.random()*256;
+      b = Math.random()*256;
+      counter = 0 };            
   });
 };
 
+function createGrid(n1, n2) {
+    for (var i = n1**2; i < n2**2; i++) {        
+       $('<div>').addClass('pixel').appendTo('#container') 
+    };
+    var sizeOfPixel= $('#container').innerWidth() / n2; //counting size of squares
+    $('.pixel').width(sizeOfPixel).height(sizeOfPixel); //resize squares  
+    hoverWithGradient('.pixel', 10);
+}
+       
 $(document).ready(function() {
-//set default 16x16 pad	
-  var n = 16; //number of squares in a row/column    
-  createGrid(0, n**2);
+//set default 10x10 pad 
+  var n = 10;
+  createGrid(0, n);
 
 //display resolution
   $('.resolution').append(n+' x '+n); 
 
-//button 'clear'
-  $('#clear').click(function() {
-    	$('.pixel').css("background-color", '#FF0000')
+//button 'Clear'
+  $('#clear').click(function() {      
+    $('.pixel').remove();
+    createGrid(0, n)
   });
   
-//button 'Size of squares'
-  $('#squareSize').click(function() {
+//button 'Resize'
+  $('#resize').click(function() {
     $('.pixel').css("background-color", '#FF0000');
-    var sizeOfPixel = prompt('Enter size of squares (px): ', 25);
-    var newn = Math.floor($('#container').innerWidth() / sizeOfPixel); //new number of squares in a row/column
-    if(newn === n) {return}; // do nothing if resolution is the same    
-    //change number of squares
-    if(newn > n) { //add additional squares if new resolution is greater. 
-      createGrid(n**2, newn**2); 
-      } else { //if new resolution is lower remove old grid and create new 
-       	$('.pixel').remove();
-       	createGrid(0, newn**2) };
-     //resize squares  
-     $('.pixel').width(sizeOfPixel).height(sizeOfPixel);     
+    var newn = prompt('Enter number of squares in a row/column: ', 10);
+    // do nothing if resolution is the same    
+    if(newn === n) {return}
+    else {
+      $('.pixel').remove();
+       createGrid(0, newn) 
+     };   
      //update resolution display
      n = newn;
      $('.resolution').empty().append(n+' x '+n);     
